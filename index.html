@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasvera — Personal Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="#" class="brand">Kasvera<span>.</span></a>
+
+            <p class="menu-label">MENU UTAMA</p>
+
+            <nav>
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#transactions" class="nav-link">Transaksi</a>
+                <a href="#summary" class="nav-link">Ringkasan</a>
+            </nav>
+
+            <div class="sidebar-note">
+                <p>Kelola uangmu dengan lebih sadar.</p>
+                <span>Catat sedikit, pahami lebih banyak.</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">PERSONAL FINANCE</p>
+                    <h1>Dashboard</h1>
+                    <p class="subtitle">
+                        Pantau kondisi keuanganmu hari ini.
+                    </p>
+                </div>
+
+                <div class="profile">
+                    <div class="avatar">N</div>
+                    <span>Keuanganku</span>
+                </div>
+            </header>
+
+            <!-- Welcome -->
+            <section class="welcome">
+                <div>
+                    <p class="eyebrow">RINGKASAN KEUANGAN</p>
+                    <h2>Uangmu, kendalimu.</h2>
+                    <p>
+                        Mulai catat pemasukan dan pengeluaranmu
+                        di satu tempat.
+                    </p>
+                </div>
+
+                <div class="welcome-mark">Rp</div>
+            </section>
+
+            <!-- Summary Cards -->
+            <section class="summary-grid" id="summary">
+                <article class="summary-card">
+                    <p>Total Saldo</p>
+                    <h2 id="balance">Rp0</h2>
+                    <span>Selisih pemasukan dan pengeluaran</span>
+                </article>
+
+                <article class="summary-card">
+                    <p>Total Pemasukan</p>
+                    <h2 id="income">Rp0</h2>
+                    <span>Semua uang yang diterima</span>
+                </article>
+
+                <article class="summary-card">
+                    <p>Total Pengeluaran</p>
+                    <h2 id="expense">Rp0</h2>
+                    <span>Semua uang yang digunakan</span>
+                </article>
+            </section>
+
+            <!-- Monthly Budget -->
+            <section class="budget-section">
+                <h2>Budget Bulanan</h2>
+                <p class="budget-description">
+                    Atur batas pengeluaranmu setiap bulan.
+                </p>
+
+                <form id="budget-form" class="budget-form">
+                    <label for="monthly-budget">
+                        Batas pengeluaran bulanan
+                    </label>
+
+                    <div class="budget-input-group">
+                        <span>Rp</span>
+                        <input
+                            type="number"
+                            id="monthly-budget"
+                            min="1"
+                            step="1"
+                            placeholder="Contoh: 1500000"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" id="save-budget">
+                        Simpan Budget
+                    </button>
+                </form>
+
+                <div class="budget-information">
+                    <div>
+                        <p>Budget</p>
+                        <h3 id="budget-limit">Rp0</h3>
+                    </div>
+
+                    <div>
+                        <p>Pengeluaran Bulan Ini</p>
+                        <h3 id="budget-spent">Rp0</h3>
+                    </div>
+
+                    <div>
+                        <p>Sisa Budget</p>
+                        <h3 id="budget-remaining">Rp0</h3>
+                    </div>
+                </div>
+
+                <div class="budget-progress-bar">
+                    <div id="budget-progress"></div>
+                </div>
+
+                <p id="budget-status">
+                    Tentukan budget bulananmu untuk memulai.
+                </p>
+            </section>
+
+            <!-- Transactions -->
+            <section id="transactions" class="transactions-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Transaksi Terbaru</h2>
+                        <p>
+                            Aktivitas keuanganmu akan muncul di sini.
+                        </p>
+                    </div>
+
+                    <div class="transaction-actions">
+                        <select
+                            id="transaction-filter"
+                            aria-label="Filter transaksi"
+                        >
+                            <option value="all">Semua Transaksi</option>
+                            <option value="income">Pemasukan</option>
+                            <option value="expense">Pengeluaran</option>
+                        </select>
+
+                        <button id="add-transaction" type="button">
+                            + Tambah Transaksi
+                        </button>
+                    </div>
+                </div>
+
+                <input
+                    type="search"
+                    id="transaction-search"
+                    placeholder="Cari transaksi..."
+                    aria-label="Cari transaksi"
+                >
+
+                <!-- JavaScript akan menampilkan daftar transaksi di sini -->
+                <div class="empty-state" id="transaction-list">
+                    <div class="empty-icon">↗</div>
+                    <h3>Belum ada transaksi</h3>
+                    <p>
+                        Transaksi yang kamu tambahkan nanti
+                        akan tampil di sini.
+                    </p>
+                </div>
+
+                <!-- Transaction Form -->
+                <form id="transaction-form" hidden>
+                    <label for="transaction-name">
+                        Nama transaksi
+                    </label>
+                    <input
+                        type="text"
+                        id="transaction-name"
+                        placeholder="Contoh: Makan siang"
+                        required
+                    >
+
+                    <label for="transaction-amount">
+                        Jumlah uang (Rp)
+                    </label>
+                    <input
+                        type="number"
+                        id="transaction-amount"
+                        placeholder="Contoh: 25000"
+                        min="1"
+                        required
+                    >
+
+                    <label for="transaction-date">
+                        Tanggal transaksi
+                    </label>
+                    <input
+                        type="date"
+                        id="transaction-date"
+                        required
+                    >
+
+                    <label for="transaction-category">
+                        Kategori
+                    </label>
+                    <select id="transaction-category" required>
+                        <option value="">Pilih kategori</option>
+                        <option value="Makanan">Makanan</option>
+                        <option value="Transportasi">Transportasi</option>
+                        <option value="Kuliah">Kuliah</option>
+                        <option value="Hiburan">Hiburan</option>
+                        <option value="Belanja">Belanja</option>
+                        <option value="Tagihan">Tagihan</option>
+                        <option value="Gaji">Gaji</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+
+                    <label for="transaction-type">
+                        Jenis transaksi
+                    </label>
+                    <select id="transaction-type">
+                        <option value="income">Pemasukan</option>
+                        <option value="expense">Pengeluaran</option>
+                    </select>
+
+                    <button type="submit">
+                        Simpan Transaksi
+                    </button>
+                </form>
+            </section>
+
+            <!-- Category Summary -->
+            <section class="category-summary">
+                <h2>Pengeluaran per Kategori</h2>
+                <div id="category-summary-list"></div>
+            </section>
+
+            <!-- Finance Chart -->
+            <section class="finance-chart-section">
+                <h2>Grafik Keuangan</h2>
+                <p class="chart-description">
+                    Perbandingan pemasukan dan pengeluaran bulan ini.
+                </p>
+
+                <div class="chart-summary">
+                    <div class="chart-summary-item">
+                        <span class="chart-dot income-dot"></span>
+                        <div>
+                            <p>Pemasukan</p>
+                            <h3 id="chart-income">Rp0</h3>
+                        </div>
+                    </div>
+
+                    <div class="chart-summary-item">
+                        <span class="chart-dot expense-dot"></span>
+                        <div>
+                            <p>Pengeluaran</p>
+                            <h3 id="chart-expense">Rp0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="finance-chart">
+                    <div class="chart-bar-group">
+                        <div class="chart-bar-track">
+                            <div
+                                id="income-bar"
+                                class="chart-bar income-bar"
+                            ></div>
+                        </div>
+                        <span>Pemasukan</span>
+                    </div>
+
+                    <div class="chart-bar-group">
+                        <div class="chart-bar-track">
+                            <div
+                                id="expense-bar"
+                                class="chart-bar expense-bar"
+                            ></div>
+                        </div>
+                        <span>Pengeluaran</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <p>
+                    Kasvera · Dibuat untuk membantu mengelola
+                    keuangan pribadi.
+                </p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
