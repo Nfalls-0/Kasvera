@@ -30,7 +30,3 @@ https://nfalls-0.github.io/Kasvera/
 1. Clone this repository.
 2. Open the project folder.
 3. Open `index.html` in your browser.
-
-## Project Status
-
-This project is part of my personal web development portfolio.
